@@ -8,8 +8,8 @@ language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
-url: https://example.com
-root: /
+url: https://bye-lemon.github.io
+root: /Gallery/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:

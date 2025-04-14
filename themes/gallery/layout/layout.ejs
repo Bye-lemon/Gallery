@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="<%- url_for('css/style.css') %>">
   <meta name="description" content="<%= config.description %>">
   <meta name="keywords" content="<%= config.keywords %>">
   <meta name="author" content="<%= config.author %>">
@@ -33,7 +33,19 @@
       <nav class="header__nav">
         <ul class="nav__list">
           <% for (const [label, path] of Object.entries(theme.menu || {})) { %>
-            <li><a href="<%= path %>" class="nav__link <%= path === '/' ? 'active' : '' %>"><%= label %></a></li>
+            <% 
+            let isActive = false;
+            if (path === '/') {
+              // 首页路径特殊处理
+              isActive = page.path === 'index.html' || page.path === '';
+            } else {
+              // 其他页面，检查当前path是否以该路径开头
+              const pagePath = page.path.replace(/^\/|\/$/g, '');
+              const navPath = path.replace(/^\/|\/$/g, '');
+              isActive = pagePath === navPath || pagePath.startsWith(navPath + '/');
+            }
+            %>
+            <li><a href="<%- url_for(path) %>" class="nav__link <%= isActive ? 'active' : '' %>"><%= label %></a></li>
           <% } %>
         </ul>
         <button class="theme-toggle" aria-label="切换主题">
@@ -53,10 +65,22 @@
       <nav class="footer__nav">
         <ul class="footer__nav-list">
           <% for (const [label, path] of Object.entries(theme.menu || {})) { %>
-            <li><a href="<%= path %>" class="footer__nav-link"><%= label %></a></li>
+            <% 
+            let isActive = false;
+            if (path === '/') {
+              // 首页路径特殊处理
+              isActive = page.path === 'index.html' || page.path === '';
+            } else {
+              // 其他页面，检查当前path是否以该路径开头
+              const pagePath = page.path.replace(/^\/|\/$/g, '');
+              const navPath = path.replace(/^\/|\/$/g, '');
+              isActive = pagePath === navPath || pagePath.startsWith(navPath + '/');
+            }
+            %>
+            <li><a href="<%- url_for(path) %>" class="footer__nav-link <%= isActive ? 'active' : '' %>"><%= label %></a></li>
           <% } %>
-          <li><a href="#" class="footer__nav-link">使用条款</a></li>
-          <li><a href="#" class="footer__nav-link">隐私政策</a></li>
+          <li><a href="<%- url_for('/terms') %>" class="footer__nav-link">使用条款</a></li>
+          <li><a href="<%- url_for('/privacy') %>" class="footer__nav-link">隐私政策</a></li>
         </ul>
       </nav>
       <div class="footer__social">
@@ -75,6 +99,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
-  <script src="/js/gallery.js"></script>
+  <script src="<%- url_for('js/gallery.js') %>"></script>
 </body>
 </html> 

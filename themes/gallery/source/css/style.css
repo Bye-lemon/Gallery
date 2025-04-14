@@ -826,10 +826,34 @@ a:hover {
 .footer__nav-link {
   color: var(--text-secondary);
   transition: color var(--transition-fast) var(--ease);
+  position: relative;
+  padding: 4px 0;
 }
 
 .footer__nav-link:hover {
   color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.footer__nav-link.active {
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.footer__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--accent-primary);
+  transition: width var(--transition-normal) var(--ease);
+}
+
+.footer__nav-link:hover::after,
+.footer__nav-link.active::after {
+  width: 100%;
 }
 
 .footer__social {
