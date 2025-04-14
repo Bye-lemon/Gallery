@@ -1,0 +1,72 @@
+# Hexo Configuration
+title: 图像画廊 
+subtitle: AI艺术图库
+description: AI生成图像展示
+keywords: AI, 图片, 画廊
+author: AI Gallery
+language: zh-CN
+timezone: Asia/Shanghai
+
+# URL
+url: https://example.com
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# 主题设置
+theme: gallery
+theme_config:
+  menu:
+    首页: /
+    关于: /about
+  footer_text: © 2023 AI Image Gallery
+  masonry:
+    columns: 3
+    gap: 15
+  colors:
+    accent_primary_rgb: "61, 90, 241"
+    accent_primary: "#3d5af1"
+    accent_secondary: "#e0e7ff"
+
+# Deployment
+deploy:
+  type: '' 

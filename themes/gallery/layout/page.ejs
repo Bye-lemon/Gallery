@@ -1,0 +1,50 @@
+<div class="page-container">
+  <h1 class="page-title"><%= page.title %></h1>
+  <div class="page-content">
+    <%- page.content %>
+  </div>
+</div>
+
+<style>
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transition: background-color var(--transition-normal) var(--ease),
+              box-shadow var(--transition-normal) var(--ease);
+}
+
+.page-title {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.page-content {
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.page-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.page-content p {
+  margin-bottom: 1.5rem;
+}
+
+.page-content ul, .page-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.page-content li {
+  margin-bottom: 0.5rem;
+}
+</style> 

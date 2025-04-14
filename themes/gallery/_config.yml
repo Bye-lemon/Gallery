@@ -1,0 +1,16 @@
+# Gallery Theme Config
+menu:
+  首页: /
+  关于: /about
+
+# footer text
+footer_text: © 2023 AI Image Gallery
+
+# 模态框设置
+modal:
+  enable: true
+  
+# 瀑布流设置
+masonry:
+  columns: 3  # 默认列数
+  gap: 15     # 图片间距 

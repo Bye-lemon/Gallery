@@ -1,0 +1,122 @@
+<%
+// 使用Hexo的数据API获取图片数据
+const galleryData = site.data.gallery || {};
+const images = galleryData.images || [];
+%>
+
+<section class="gallery-hero">
+  <div class="container">
+    <h2 class="gallery-hero__title">探索AI生成的艺术世界</h2>
+    <p class="gallery-hero__subtitle">这个画廊展示了各种AI平台创作的精美图像，每一张都蕴含独特的创意和想象力</p>
+    <a href="#gallery-section" class="gallery-hero__cta">
+      浏览画廊
+      <i class="gallery-hero__cta-icon fa-solid fa-arrow-down"></i>
+    </a>
+  </div>
+</section>
+
+<section id="gallery-section" class="gallery-container container">
+  <!-- 过滤和排序控件 -->
+  <div class="gallery-controls">
+    <div class="gallery-filters">
+      <button class="gallery-filter active" data-filter="all">
+        <i class="gallery-filter__icon fa-solid fa-border-all"></i>全部
+      </button>
+      <button class="gallery-filter" data-filter="midjourney">
+        <i class="gallery-filter__icon fa-solid fa-robot"></i>Midjourney
+      </button>
+      <button class="gallery-filter" data-filter="dalle">
+        <i class="gallery-filter__icon fa-solid fa-palette"></i>DALL-E
+      </button>
+      <button class="gallery-filter" data-filter="stable">
+        <i class="gallery-filter__icon fa-solid fa-wand-magic-sparkles"></i>Stable
+      </button>
+      <button class="gallery-filter" data-filter="即梦ai">
+        <i class="gallery-filter__icon fa-solid fa-cloud"></i>即梦AI
+      </button>
+    </div>
+    <div class="gallery-sorts">
+      <span class="gallery-sort__label">排序:</span>
+      <select class="gallery-sort__select">
+        <option value="default">默认</option>
+        <option value="creator">按平台</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 瀑布流画廊容器，添加居中样式 -->
+  <div class="gallery-grid-container">
+    <div class="gallery-grid" id="gallery-masonry">
+      <% images.forEach((image, index) => { %>
+        <div class="gallery-item" data-index="<%= index %>">
+          <img src="<%= image.img_link %>" alt="<%= image.prompt %>" class="gallery-item__image" loading="lazy">
+          <div class="gallery-item__info">
+            <span class="gallery-item__creator"><%= image.creator %></span>
+            <p class="gallery-item__prompt"><%= image.prompt %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+
+  <!-- 分页控件 -->
+  <div class="gallery-pagination">
+    <button class="pagination-button disabled" aria-label="上一页">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="pagination-button active">1</button>
+    <button class="pagination-button">2</button>
+    <button class="pagination-button">3</button>
+    <button class="pagination-button" aria-label="下一页">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</section>
+
+<!-- 模态框 -->
+<div class="modal" id="imageModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">图片详情</h3>
+      <button class="modal-close" aria-label="关闭">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image">
+        <img src="" alt="" class="modal-img">
+      </div>
+      <div class="modal-details">
+        <div class="detail-section">
+          <h4 class="detail-section__title">Prompt</h4>
+          <p class="detail-section__content detail-section__content--prompt modal-prompt"></p>
+        </div>
+        <div class="detail-section">
+          <h4 class="detail-section__title">生成平台</h4>
+          <div class="detail-section__platform">
+            <i class="detail-section__platform-icon fa-solid fa-image"></i>
+            <span class="modal-creator"></span>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h4 class="detail-section__title">操作</h4>
+          <div class="detail-section__actions">
+            <a href="#" class="detail-section__action download-btn" download>
+              <i class="detail-section__action-icon fa-solid fa-download"></i>
+              下载图片
+            </a>
+            <button class="detail-section__action copy-prompt-btn">
+              <i class="detail-section__action-icon fa-solid fa-copy"></i>
+              复制提示词
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 将图片数据传递给前端JavaScript
+  window.galleryData = <%- JSON.stringify(images) %>;
+</script> 

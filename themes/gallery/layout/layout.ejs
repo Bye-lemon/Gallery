@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title %></title>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="description" content="<%= config.description %>">
+  <meta name="keywords" content="<%= config.keywords %>">
+  <meta name="author" content="<%= config.author %>">
+  <!-- 添加主题颜色元标签 -->
+  <meta name="theme-color" content="#3d5af1">
+  <!-- 定义accent-primary-rgb变量 -->
+  <style>
+    :root {
+      --accent-primary-rgb: 61, 90, 241;
+    }
+    :root.dark-theme {
+      --accent-primary-rgb: 123, 146, 255;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__branding">
+        <h1 class="header__title"><%= config.title %></h1>
+        <p class="header__subtitle"><%= config.subtitle %></p>
+      </div>
+      <nav class="header__nav">
+        <ul class="nav__list">
+          <% for (const [label, path] of Object.entries(theme.menu || {})) { %>
+            <li><a href="<%= path %>" class="nav__link <%= path === '/' ? 'active' : '' %>"><%= label %></a></li>
+          <% } %>
+        </ul>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-toggle__icon fa-solid fa-circle-half-stroke"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__logo"><%= config.title %></div>
+      <nav class="footer__nav">
+        <ul class="footer__nav-list">
+          <% for (const [label, path] of Object.entries(theme.menu || {})) { %>
+            <li><a href="<%= path %>" class="footer__nav-link"><%= label %></a></li>
+          <% } %>
+          <li><a href="#" class="footer__nav-link">使用条款</a></li>
+          <li><a href="#" class="footer__nav-link">隐私政策</a></li>
+        </ul>
+      </nav>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Github">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Twitter">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+      <p class="footer__copyright"><%= theme.footer_text || '© ' + new Date().getFullYear() + ' AI Image Gallery' %></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+  <script src="/js/gallery.js"></script>
+</body>
+</html> 
