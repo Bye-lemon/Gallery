@@ -3,7 +3,7 @@ name: 部署画廊网站
 on:
   push:
     branches:
-      - main  # 设置为您的默认分支
+      - master  # 设置为您的默认分支
   # 也允许手动触发
   workflow_dispatch:
 
@@ -30,7 +30,7 @@ jobs:
       - name: 部署到GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages  # 部署到gh-pages分支
           force_orphan: true
