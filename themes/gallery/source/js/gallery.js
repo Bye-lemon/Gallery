@@ -265,60 +265,67 @@ function initModalEvents() {
   galleryItems.forEach(item => {
     item.addEventListener('click', function() {
       const index = parseInt(this.getAttribute('data-index'));
-      const imageData = window.galleryData[index];
-      
-      if (imageData) {
-        // 填充模态框内容
-        modalImg.src = imageData.img_link;
-        modalImg.alt = imageData.prompt;
-        modalPrompt.textContent = imageData.prompt;
-        modalCreator.textContent = imageData.creator;
+      // 确保索引在有效范围内
+      if (index >= 0 && index < window.galleryData.length) {
+        const imageData = window.galleryData[index];
         
-        // 设置下载链接
-        if (downloadBtn) {
-          downloadBtn.href = imageData.img_link;
-          // 从URL中提取文件名，或使用默认名称
-          let fileName = 'ai-image.png';
-          try {
-            const url = new URL(imageData.img_link);
-            const pathSegments = url.pathname.split('/');
-            if (pathSegments.length > 0) {
-              const lastSegment = pathSegments[pathSegments.length - 1];
-              if (lastSegment && lastSegment.includes('.')) {
-                fileName = lastSegment;
+        if (imageData) {
+          // 填充模态框内容
+          modalImg.src = imageData.img_link;
+          modalImg.alt = imageData.prompt;
+          modalPrompt.textContent = imageData.prompt;
+          modalCreator.textContent = imageData.creator;
+          
+          // 设置下载链接
+          if (downloadBtn) {
+            downloadBtn.href = imageData.img_link;
+            // 从URL中提取文件名，或使用默认名称
+            let fileName = 'ai-image.png';
+            try {
+              const url = new URL(imageData.img_link);
+              const pathSegments = url.pathname.split('/');
+              if (pathSegments.length > 0) {
+                const lastSegment = pathSegments[pathSegments.length - 1];
+                if (lastSegment && lastSegment.includes('.')) {
+                  fileName = lastSegment;
+                }
               }
+            } catch (e) {
+              console.warn('无法从URL解析文件名:', e);
             }
-          } catch (e) {
-            console.warn('无法从URL解析文件名:', e);
+            downloadBtn.setAttribute('download', fileName);
           }
-          downloadBtn.setAttribute('download', fileName);
-        }
-        
-        // 显示模态框
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // 防止背景滚动
-        
-        // 添加平台图标
-        const platformIcon = modal.querySelector('.detail-section__platform-icon');
-        if (platformIcon) {
-          platformIcon.className = 'detail-section__platform-icon fa-solid';
           
-          // 获取creator的第一段（如果有空格就取空格前的部分）
-          const creatorFirstPart = imageData.creator.split(' ')[0].toLowerCase();
+          // 显示模态框
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden'; // 防止背景滚动
           
-          // 根据平台添加不同图标
-          if (creatorFirstPart === 'midjourney') {
-            platformIcon.classList.add('fa-robot');
-          } else if (creatorFirstPart === 'dall-e' || creatorFirstPart === 'dalle') {
-            platformIcon.classList.add('fa-palette');
-          } else if (creatorFirstPart === 'stable') {
-            platformIcon.classList.add('fa-wand-magic-sparkles');
-          } else if (creatorFirstPart === '即梦ai') {
-            platformIcon.classList.add('fa-cloud');
-          } else {
-            platformIcon.classList.add('fa-image');
+          // 添加平台图标
+          const platformIcon = modal.querySelector('.detail-section__platform-icon');
+          if (platformIcon) {
+            platformIcon.className = 'detail-section__platform-icon fa-solid';
+            
+            // 获取creator的第一段（如果有空格就取空格前的部分）
+            const creatorFirstPart = imageData.creator.split(' ')[0].toLowerCase();
+            
+            // 根据平台添加不同图标
+            if (creatorFirstPart === 'midjourney') {
+              platformIcon.classList.add('fa-robot');
+            } else if (creatorFirstPart === 'dall-e' || creatorFirstPart === 'dalle') {
+              platformIcon.classList.add('fa-palette');
+            } else if (creatorFirstPart === 'stable') {
+              platformIcon.classList.add('fa-wand-magic-sparkles');
+            } else if (creatorFirstPart === '即梦ai') {
+              platformIcon.classList.add('fa-cloud');
+            } else {
+              platformIcon.classList.add('fa-image');
+            }
           }
+        } else {
+          console.error('无法找到索引为', index, '的图片数据');
         }
+      } else {
+        console.error('图片索引无效:', index);
       }
     });
   });
@@ -454,7 +461,11 @@ function applyFilters() {
   const sortBy = sortSelect ? sortSelect.value : 'default';
   
   // 过滤和排序数据
-  let filteredData = [...window.galleryData];
+  // 创建带有原始索引的数据
+  let filteredData = window.galleryData.map((item, index) => ({
+    ...item,
+    originalIndex: index
+  }));
   
   // 应用过滤
   if (activeFilter !== 'all') {
@@ -501,7 +512,8 @@ function updateGrid(data) {
   data.forEach((item, index) => {
     const gridItem = document.createElement('div');
     gridItem.className = 'gallery-item';
-    gridItem.setAttribute('data-index', index);
+    // 使用原始索引，确保模态框显示正确的图片
+    gridItem.setAttribute('data-index', item.originalIndex !== undefined ? item.originalIndex : index);
     gridItem.style.width = `${columnWidth}px`;
     
     gridItem.innerHTML = `
