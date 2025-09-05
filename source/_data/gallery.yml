@@ -11,4 +11,7 @@ images:
   - img_link: "https://p9-dreamina-sign.byteimg.com/tos-cn-i-tb4s082cfz/734b673e56f14cbdb462f21a057e68e7~tplv-tb4s082cfz-aigc_resize:2048:2048.webp?lk3s=43402efa&x-expires=1747008000&x-signature=C78MWY%2B0SEMFyimRlA%2FsRO10SF0%3D"
     prompt: "岩彩风格，点彩，磨砂肌理，噪点，模糊的雪夜，白衣银发少年手里拿着一盏发光圆形纸灯，弥散渐变，黑色的夜空布满星星点点的灯光，散发着柔和的光芒，极简，抽象，宁静的氛围，超凡脱俗的影像"
     creator: "即梦AI 图片2.1"
+  - img_link: "https://www.miko3c.com/upload/news_b/twL_news_25I03_pDJDlSf9jB.png"
+    prompt: "Use the nano-banana model to create a 1/7 scale commercialized figure of the character in the illustration, in a realistic style and environment. Place the figure on a computer desk, using a circular transparent acrylic base without any text. On the computer screen, display the ZBrush modeling process of the figure. Next to the computer screen, place a BANDAI-style toy packaging box printed with the original artwork."
+    creator: "Nano Banana"
 
