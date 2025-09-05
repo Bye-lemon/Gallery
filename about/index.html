@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图像画廊</title>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="/Gallery/css/style.css">
+  <meta name="description" content="AI生成图像展示">
+  <meta name="keywords" content="AI, 图片, 画廊">
+  <meta name="author" content="AI Gallery">
+  <!-- 添加主题颜色元标签 -->
+  <meta name="theme-color" content="#3d5af1">
+  <!-- 定义accent-primary-rgb变量 -->
+  <style>
+    :root {
+      --accent-primary-rgb: 61, 90, 241;
+    }
+    :root.dark-theme {
+      --accent-primary-rgb: 123, 146, 255;
+    }
+  </style>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__branding">
+        <h1 class="header__title">图像画廊</h1>
+        <p class="header__subtitle">AI艺术图库</p>
+      </div>
+      <nav class="header__nav">
+        <ul class="nav__list">
+          
+            
+            <li><a href="/Gallery/" class="nav__link ">首页</a></li>
+          
+            
+            <li><a href="/Gallery/about" class="nav__link active">关于</a></li>
+          
+        </ul>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-toggle__icon fa-solid fa-circle-half-stroke"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-container">
+  <h1 class="page-title">关于</h1>
+  <div class="page-content">
+    <h1 id="关于我们的AI艺术画廊"><a href="#关于我们的AI艺术画廊" class="headerlink" title="关于我们的AI艺术画廊"></a>关于我们的AI艺术画廊</h1><p>这是一个展示AI生成艺术作品的画廊网站。我们收集了使用各种AI艺术生成平台创建的精美图像，包括但不限于Midjourney、DALL-E和Stable Diffusion等。</p>
+<h2 id="收集方式"><a href="#收集方式" class="headerlink" title="收集方式"></a>收集方式</h2><p>所有展示的图像都基于精心设计的提示词(Prompt)创建，并记录了生成它们的平台。我们希望通过分享这些信息，帮助艺术爱好者了解不同AI平台的特点和能力。</p>
+<h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><p>本网站基于Hexo框架构建，使用了以下技术：</p>
+<ul>
+<li>Hexo静态网站生成器</li>
+<li>瀑布流布局展示图片</li>
+<li>响应式设计，适配各种设备</li>
+<li>GitHub Actions自动部署</li>
+</ul>
+<p>感谢您的访问！ </p>
+
+  </div>
+</div>
+
+<style>
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transition: background-color var(--transition-normal) var(--ease),
+              box-shadow var(--transition-normal) var(--ease);
+}
+
+.page-title {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.page-content {
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.page-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.page-content p {
+  margin-bottom: 1.5rem;
+}
+
+.page-content ul, .page-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.page-content li {
+  margin-bottom: 0.5rem;
+}
+</style> 
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__logo">图像画廊</div>
+      <nav class="footer__nav">
+        <ul class="footer__nav-list">
+          
+            
+            <li><a href="/Gallery/" class="footer__nav-link ">首页</a></li>
+          
+            
+            <li><a href="/Gallery/about" class="footer__nav-link active">关于</a></li>
+          
+          <li><a href="/Gallery/terms" class="footer__nav-link">使用条款</a></li>
+          <li><a href="/Gallery/privacy" class="footer__nav-link">隐私政策</a></li>
+        </ul>
+      </nav>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Github">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Twitter">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+      <p class="footer__copyright">© 2023 AI Image Gallery</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+  <script src="/Gallery/js/gallery.js"></script>
+</body>
+</html> 
